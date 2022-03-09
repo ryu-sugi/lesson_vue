@@ -48,6 +48,42 @@
       // 座標をブラウザのコンソールに出力する
       console.log(ball.pos.x); // => 15が出力される
       console.log(ball.pos.y); // => 53が出力される
+
+            // 教本45ページ 2-3
+
+            // 教本47ページ 2-3(ランダムな黒丸を生成する)
+
+      // Movableクラスからインスタンスを生成する
+      var Movable = function(x, y) {
+        this.pos = {
+          x: x,
+          y: y
+        };
+        this.move = function(x, y) {
+          this.pos.x += x;
+          this.pos.y += y;
+        };
+      }
+// ボールオブジェクトを格納する空の配列を用意する
+var ball = [];
+// 100個分の繰り返し
+for (var i=0; i<=100; i++) {
+    // ボールオブジェクトのインスタンスを生成する
+    ball[i] = new Movable (
+      Math.floor(Math.random()*window.innerWidth),
+      Math.floor(Math.random()*window.innerHeight)
+    );
+}
+// ボールをブラウザに描画する
+for (var i=0; i<=100; i++) {
+  document.write('<div class="ball" style="top:' + ball[i].pos.y + 'px;left:' + ball[i].pos.x + 'px;">●</div>');
+}
+            // 教本47ページ 2-3
+
     </script>
+
+    <style>
+      .ball{position: absolute;}
+    </style>
   </body>
 </html>
