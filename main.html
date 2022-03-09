@@ -1,31 +1,53 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>サンプル</title>
-</head>
-<body>
-  <div id="app">
-    <ul>
-      <li v-for="item in list">{{item.name}} {{item.price}}円</li>
-    </ul>
-  </div>
-  <script src="https://jp.vuejs.org/js/vue.js"></script>
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        list: [
-          {name: '商品A', price: 1000},
-          {name: '商品B', price: 2000},
-          {name: '商品C', price: 980}
-        ]
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>サンプル</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="item in list">{{item.name}} {{item.price}}円</li>
+      </ul>
+    </div>
+    <script src="https://jp.vuejs.org/js/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          list: [
+            { name: "商品A", price: 1000 },
+            { name: "商品B", price: 2000 },
+            { name: "商品C", price: 980 },
+          ],
+        },
+      });
+      app.price = 1000; //データを更新する((※)
+      app.stock = 10;
+
+      // 教本45ページ 2-3
+
+      var ball = {
+        pos: {
+          x: 10,
+          y: 50
+        },
+        move: function (x, y) {
+          this.pos.x += x;
+          this.pos.y += y;
+        }
       }
-    });
-     app.price = 1000; //データを更新する((※)
-     app.stock = 10;
+      // 座標をブラウザのコンソールに出力する
+      console.log(ball.pos.x); // => 10が出力される
+      console.log(ball.pos.y); // => 50が出力される
+
+      // ボールをx方向に5,y方向に3動かす
+      ball.move(5, 3);
+      // 座標をブラウザのコンソールに出力する
+      console.log(ball.pos.x); // => 15が出力される
+      console.log(ball.pos.y); // => 53が出力される
     </script>
-</body>
+  </body>
 </html>
