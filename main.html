@@ -17,6 +17,12 @@
 
     <div id="app3">{{lang == 'ja' ? message_ja : message_en}}</div>
 
+    <!-- 属性にバインド -->
+    <div id="app4">
+      <input type="text" v-bind: value="message">
+    </div>
+    <!-- 属性にバインド -->
+
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script>
       var app = new Vue({
@@ -100,13 +106,22 @@
       });
 
       var app = new Vue({
-        el: "#app",
+        el: "#app3",
         data: {
           message_en: "Hello!",
           message_ja: "こんにちは!",
           lang: "ja",
         },
       });
+
+      // 属性にバインド
+      var app = new Vue({
+        el: '#app4',
+        data: {
+          message: 'こんにちは!'
+        }
+      });
+      // 属性にバインド
 
     </script>
 
