@@ -12,6 +12,11 @@
         <li v-for="item in list">{{item.name}} {{item.price}}円</li>
       </ul>
     </div>
+
+    <div id="app2">{{message}}</div>
+
+    <div id="app3">{{lang == 'ja' ? message_ja : message_en}}</div>
+
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script>
       var app = new Vue({
@@ -32,13 +37,13 @@
       var ball = {
         pos: {
           x: 10,
-          y: 50
+          y: 50,
         },
         move: function (x, y) {
           this.pos.x += x;
           this.pos.y += y;
-        }
-      }
+        },
+      };
       // 座標をブラウザのコンソールに出力する
       console.log(ball.pos.x); // => 10が出力される
       console.log(ball.pos.y); // => 50が出力される
@@ -49,41 +54,66 @@
       console.log(ball.pos.x); // => 15が出力される
       console.log(ball.pos.y); // => 53が出力される
 
-            // 教本45ページ 2-3
+      // 教本45ページ 2-3
 
-            // 教本47ページ 2-3(ランダムな黒丸を生成する)
+      // 教本47ページ 2-3(ランダムな黒丸を生成する)
 
       // Movableクラスからインスタンスを生成する
-      var Movable = function(x, y) {
+      var Movable = function (x, y) {
         this.pos = {
           x: x,
-          y: y
+          y: y,
         };
-        this.move = function(x, y) {
+        this.move = function (x, y) {
           this.pos.x += x;
           this.pos.y += y;
         };
+      };
+      // ボールオブジェクトを格納する空の配列を用意する
+      var ball = [];
+      // 100個分の繰り返し
+      for (var i = 0; i <= 100; i++) {
+        // ボールオブジェクトのインスタンスを生成する
+        ball[i] = new Movable(
+          Math.floor(Math.random() * window.innerWidth),
+          Math.floor(Math.random() * window.innerHeight)
+        );
       }
-// ボールオブジェクトを格納する空の配列を用意する
-var ball = [];
-// 100個分の繰り返し
-for (var i=0; i<=100; i++) {
-    // ボールオブジェクトのインスタンスを生成する
-    ball[i] = new Movable (
-      Math.floor(Math.random()*window.innerWidth),
-      Math.floor(Math.random()*window.innerHeight)
-    );
-}
-// ボールをブラウザに描画する
-for (var i=0; i<=100; i++) {
-  document.write('<div class="ball" style="top:' + ball[i].pos.y + 'px;left:' + ball[i].pos.x + 'px;">●</div>');
-}
-            // 教本47ページ 2-3
+      // ボールをブラウザに描画する
+      for (var i = 0; i <= 100; i++) {
+        document.write(
+          '<div class="ball" style="top:' +
+            ball[i].pos.y +
+            "px;left:" +
+            ball[i].pos.x +
+            'px;">●</div>'
+        );
+      }
+      // 教本47ページ 2-3
+
+      // 教本47ページ 2-4 レンダリング
+      var app = new Vue({
+        el: "#app2",
+        data: {
+          message: "こんにちは!",
+        },
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message_en: "Hello!",
+          message_ja: "こんにちは!",
+          lang: "ja",
+        },
+      });
 
     </script>
 
     <style>
-      .ball{position: absolute;}
+      .ball {
+        position: absolute;
+      }
     </style>
   </body>
 </html>
