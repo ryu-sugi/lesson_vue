@@ -23,6 +23,13 @@
     </div>
     <!-- 属性にバインド -->
 
+<!-- style属性にバインドする(文字サイズをバインドする例) -->
+    <div id="app5">
+      <p v-bind:style="{fontSize: pSize}">文字サイズは{{pSize}}です。</p>
+    </div>
+<!-- style属性にバインドする(文字サイズをバインドする例) -->
+
+
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script>
       var app = new Vue({
@@ -122,6 +129,15 @@
         }
       });
       // 属性にバインド
+
+      // style属性にバインドする(文字サイズをバインドする例)
+      var app5 = new Vue ({
+        el: '#app5',
+        data: {
+          pSize: '40px'
+        }
+      })
+      // style属性にバインドする(文字サイズをバインドする例)
 
     </script>
 
