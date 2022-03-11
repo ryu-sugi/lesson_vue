@@ -35,9 +35,21 @@
     </div>
     <!-- class属性にバインドする -->
 
+    <!-- リストデータをバインドする -->  
+    <div id="app7">
+      <table border="1">
+        <tr><th>商品コード</th><th>商品名</th></tr>
+        <tr v-for="item in products" v-bind:key="item.code">
+          <td>{{item.code}}</td><td>{{item.name}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- リストデータをバインドする -->
+
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script src="main.js">
-      
+
       var app = new Vue({
         el: "#app",
         data: {
@@ -151,6 +163,19 @@
         }
       });
       // class属性にバインドする
+
+      // リストデータをバインドする
+      var app7 = new Vue ({
+        el: '#app7',
+        data: {
+          products: [
+            {code: 'A01', name: 'プロダクトA'},
+            {code: 'B01', name: 'プロダクトB'},
+            {code: 'C01', name: 'プロダクトC'}
+          ]
+        }
+      });
+      // リストデータをバインドする
 
 
     </script>
