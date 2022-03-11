@@ -19,19 +19,25 @@
 
     <!-- 属性にバインド -->
     <div id="app4">
-      <input type="text" v-bind: value="message">
+      <input type="text" v-bind: value="message" />
     </div>
     <!-- 属性にバインド -->
 
-<!-- style属性にバインドする(文字サイズをバインドする例) -->
+    <!-- style属性にバインドする(文字サイズをバインドする例) -->
     <div id="app5">
       <p v-bind:style="{fontSize: pSize}">文字サイズは{{pSize}}です。</p>
     </div>
-<!-- style属性にバインドする(文字サイズをバインドする例) -->
-
+    <!-- style属性にバインドする(文字サイズをバインドする例) -->
+    
+    <!-- class属性にバインドする -->
+    <div id="app6">
+      <p v-bind:class="{capitalize: isCapital}">hello vue!</p>
+    </div>
+    <!-- class属性にバインドする -->
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
-    <script>
+    <script src="main.js">
+      
       var app = new Vue({
         el: "#app",
         data: {
@@ -46,7 +52,6 @@
       app.stock = 10;
 
       // 教本45ページ 2-3
-
       var ball = {
         pos: {
           x: 10,
@@ -66,11 +71,9 @@
       // 座標をブラウザのコンソールに出力する
       console.log(ball.pos.x); // => 15が出力される
       console.log(ball.pos.y); // => 53が出力される
-
       // 教本45ページ 2-3
 
       // 教本47ページ 2-3(ランダムな黒丸を生成する)
-
       // Movableクラスからインスタンスを生成する
       var Movable = function (x, y) {
         this.pos = {
@@ -120,6 +123,7 @@
           lang: "ja",
         },
       });
+      // 教本47ページ 2-4 レンダリング
 
       // 属性にバインド
       var app = new Vue({
@@ -136,14 +140,28 @@
         data: {
           pSize: '40px'
         }
-      })
+      });
       // style属性にバインドする(文字サイズをバインドする例)
+      
+      // class属性にバインドする
+      var app6 = new Vue ({
+        el: '#app6',
+        data: {
+          isCapital: true
+        }
+      });
+      // class属性にバインドする
+
 
     </script>
 
     <style>
       .ball {
         position: absolute;
+      }
+
+      .capitalize {
+        text-transform: capitalize;
       }
     </style>
   </body>
