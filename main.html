@@ -61,7 +61,13 @@
       <span v-if="stock >= 1">残り{{stock}}個です。</span>
       <span v-else>在庫切れです。</span>
     </div>
-    <!-- v-if, v-else使用例 -->    
+    <!-- v-if, v-else使用例 -->
+    
+    <!-- v-showの使用例 -->
+    <div id="app10">
+     {{price}}円 <span v-show="price < 1000">セール実施中!</span>
+    </div>
+    <!-- v-showの使用例 -->
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script src="main.js">
@@ -210,6 +216,16 @@
         }
       });
       // v-if v-elseの使用例
+
+      // v-showの使用例
+     var app10 = new Vue ({
+        el: '#app10',
+        data: {
+          stock: 1280
+        }
+      });
+      // v-showの使用例
+
 
 
     </script>
