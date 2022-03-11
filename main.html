@@ -50,11 +50,18 @@
     </div>
     <!-- リストデータをバインドする -->
 
-    <!-- v-ifの使用例 -->
+    <!-- v-ifの使用例 1000円以下の場合「セール実施中」と出力 -->
     <div id="app8">
       {{price}}円 <span v-if="price < 1000">セール実施中</span>
     </div>
     <!-- v-ifの使用例 -->
+
+    <!-- v-if, v-else使用例 -->
+    <div id="app9">
+      <span v-if="stock >= 1">残り{{stock}}個です。</span>
+      <span v-else>在庫切れです。</span>
+    </div>
+    <!-- v-if, v-else使用例 -->    
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script src="main.js">
@@ -194,7 +201,17 @@
         }
       });
       // v-ifの使用例
-      
+
+      // v-if v-elseの使用例
+     var app9 = new Vue ({
+        el: '#app9',
+        data: {
+          stock: 10
+        }
+      });
+      // v-if v-elseの使用例
+
+
     </script>
 
     <style>
