@@ -61,12 +61,18 @@
      </div>
      <!-- Vue未使用バージョン イベントハンドリング(クリックイベントの使用例) -->
 
-     <!-- resizeイベントのハンドリング -->
+     <!-- ウィンドウのresizeイベントのハンドリング -->
      <div id="app18">
        ウィンドウの横幅:{{width}} <br>
        ウィンドウの高さ:{{height}}
      </div>
-     <!-- resizeイベントのハンドリング -->
+     <!-- ウィンドウのresizeイベントのハンドリング -->
+
+     <!-- マウスでクリックした場所の座標を追跡(resizeイベントのハンドリング) -->
+     <div id="app19">
+      <p>マウスカーソルの位置:{{point.x}}{{point.y}}</p>
+     </div>
+     <!-- マウスでクリックした場所の座標を追跡(resizeイベントのハンドリング) -->
 
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
@@ -204,8 +210,8 @@
       updateStock();
     // Vue未使用バージョン イベントハンドリング(クリックイベントの使用例)
 
-    // resizeイベントのハンドリング
-    var app = new Vue ({
+    // ウィンドウのresizeイベントのハンドリング
+    var app18 = new Vue ({
       el: '#app18',
       data: {
         // ウィンドウサイズ
@@ -229,7 +235,27 @@
         }
       }
     });
-    // resizeイベントのハンドリング
+    // ウィンドウのresizeイベントのハンドリング
+
+    // マウスでクリックした場所の座標を追跡(resizeイベントのハンドリング)
+    var app = new Vue ({
+      el: '#app19',
+      data: {
+        point: {x:0, y:0}
+      },
+      created: function() {
+        // ↓イベントハンドラを登録
+        addEventListener('mousemove', this.mousemoveHandler);
+      },
+      methods: {
+        // ↓mousemoveイベントハンドラ
+        mousemoveHandler: function($event) {
+          this.point.x = $event.clientX;
+          this.point.y = $event.clientY;
+        }
+      }
+    });
+    // マウスでクリックした場所の座標を追跡(resizeイベントのハンドリング)
 
     </script>
   </body>
