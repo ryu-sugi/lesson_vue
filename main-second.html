@@ -50,7 +50,7 @@
           <button class="btn" v-on:click="onDeleteItem">削除</button>
             
         </template>
-        <template>在庫切れ</template>
+        <template v-else>在庫切れ</template>
      </div>
      <!-- イベントハンドリング(クリックイベントの使用例) -->
 
@@ -149,7 +149,7 @@
     
     // イベントハンドリング (クリックイベントの使用例)
     var app16 = new Vue({
-      el: '#app',
+      el: '#app16',
       data: {
         stock: 10
       },
