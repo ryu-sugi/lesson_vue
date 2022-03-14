@@ -9,11 +9,23 @@
 
   <body>
 
-    <!-- フィルタを適用する(フィルタをグローバルスコープに登録する) -->
+    <!-- フィルタを適用(グローバルスコープに登録) -->
     <div id="app11">
       {{price|number_format}}
     </div>
-    <!-- フィルタを適用する(フィルタをグローバルスコープに登録する) -->
+    <!-- フィルタを適用(グローバルスコープに登録) -->
+    
+    <!-- フィルタを適用(ローカルスコープに登録) -->
+    <div id="app12">
+      {{price|number_format}}
+    </div>
+    <!-- フィルタを適用(ローカルスコープに登録) -->
+
+     <!-- 複数のフィルタを繋げる(フィルタを組み合わせて使用) -->
+    <div id="app13">
+      {{price|unit}} {{price|number_format|unit}}
+    </div>
+     <!-- 複数のフィルタを繋げる(フィルタを組み合わせて使用) -->
 
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
@@ -30,6 +42,38 @@
       }
     });
     // フィルターをグローバルスコープに登録する。(フィルタを適用する)
+   
+    // フィルターをローカルスコープに登録する。(フィルタを適用する)
+    var app12 = new Vue ({
+      el: '#app12',
+      data: {
+        price: 1000
+      },
+      filters: {
+        number_format: function(val){
+          return val.toLocaleString();
+        }
+      }
+    });
+    // フィルターをローカルスコープに登録する。(フィルタを適用する)
 
+    // 複数のフィルタを繋げる(フィルタを組み合わせて使用する)
+    var app13 = new Vue ({
+      el: '#app13',
+      data: {
+        price: 1000
+      },
+      filters: {
+            //  金額を3桁カンマ編集するフィルター
+        number_format: function(val){
+          return val.toLocaleString();
+        },
+           //  金額を3桁カンマ編集するフィルター
+        unit: function(val){
+          return val + '円';
+        }
+      }
+    });
+    // 複数のフィルタを繋げる(フィルタを組み合わせて使用する)
     </script>
   </body>
