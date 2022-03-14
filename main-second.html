@@ -61,6 +61,13 @@
      </div>
      <!-- Vue未使用バージョン イベントハンドリング(クリックイベントの使用例) -->
 
+     <!-- resizeイベントのハンドリング -->
+     <div id="app18">
+       ウィンドウの横幅:{{width}} <br>
+       ウィンドウの高さ:{{height}}
+     </div>
+     <!-- resizeイベントのハンドリング -->
+
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script>
@@ -196,6 +203,33 @@
         // ↓在庫数の初期値を表示する
       updateStock();
     // Vue未使用バージョン イベントハンドリング(クリックイベントの使用例)
+
+    // resizeイベントのハンドリング
+    var app = new Vue ({
+      el: '#app18',
+      data: {
+        // ウィンドウサイズ
+        width: window.innerWidth,
+        height: window.innerHeight
+      },
+      created: function() {
+        // ↓イベントハンドラを登録
+        addEventListener('resize', this.resizeHandler);
+      },
+      beforeDestroy: function() {
+        // ↓イベントハンドラを解除
+        removeEventListener('resize', this.resizeHandler);
+      },
+      methods: {
+        // ↓イベントハンドラ
+        resizeHandler: function($event) {
+          // ↓現在のウィンドウサイズでプロパティを更新
+          this.width = $event.target.innerWidth;
+          this.height = $event.target.innerHeight;
+        }
+      }
+    });
+    // resizeイベントのハンドリング
 
     </script>
   </body>
