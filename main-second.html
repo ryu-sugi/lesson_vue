@@ -76,13 +76,23 @@
 
      <!-- ウォッチャの使用例 -->
      <div id="app20">
-       <template v-if="stock >= 1">
-         <span class="num">残り{{stock}}個</span>
-         <button class="btn" v-on:click="onDeleteItem">削除</button>
-       </template>
-       {{message}}
-     </div>
-     <!-- ウォッチャの使用例 -->
+      <template v-if="stock >= 1">
+        <span class="num">残り{{stock}}個</span>
+        <button class="btn" v-on:click="onDeleteItem">削除</button>
+      </template>
+      {{message}}
+    </div>
+    <!-- ウォッチャの使用例 -->
+
+     <!-- ウォッチャから算出プロパティへの置き換え -->
+     <div id="app21">
+      <template v-if="stock >= 1">
+        <span class="num">残り{{stock}}個</span>
+        <button class="btn" v-on:click="onDeleteItem">削除</button>
+      </template>
+      {{statusMessage}}
+    </div>
+    <!-- ウォッチャから算出プロパティへの置き換え -->
 
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
@@ -290,6 +300,31 @@
       }
     })
     // ウォッチャの使用例
+
+    // ウォッチャから算出プロパティへの置き換え
+    var app21 = new Vue ({
+      el: '#app21',
+      data: {
+        message: '',
+        stock: 10
+      },
+      methods: {
+        // ↓削除ボタンのクリックイベントハンドラ
+        onDeleteItem: function() {
+          this.stock--;
+        }
+      },
+      computed: {
+        // 加工したメッセージを返す算出プロパティ
+        statusMessage: function() {
+          if(this.stock == 0) {
+            return '売り切れ';
+          }
+          return '';
+        }
+      }
+    })
+    // ウォッチャから算出プロパティへの置き換え
 
     </script>
   </body>
