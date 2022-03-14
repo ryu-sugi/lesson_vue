@@ -74,6 +74,16 @@
      </div>
      <!-- マウスでクリックした場所の座標を追跡(resizeイベントのハンドリング) -->
 
+     <!-- ウォッチャの使用例 -->
+     <div id="app20">
+       <template v-if="stock >= 1">
+         <span class="num">残り{{stock}}個</span>
+         <button class="btn" v-on:click="onDeleteItem">削除</button>
+       </template>
+       {{message}}
+     </div>
+     <!-- ウォッチャの使用例 -->
+
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script>
@@ -256,6 +266,30 @@
       }
     });
     // マウスでクリックした場所の座標を追跡(resizeイベントのハンドリング)
+
+    // ウォッチャの使用例
+    var app20 = new Vue ({
+      el: '#app20',
+      data: {
+        message: '',
+        stock: 10
+      },
+      methods: {
+        // ↓削除ボタンのクリックイベントハンドラ
+        onDeleteItem: function() {
+          this.stock--;
+        }
+      },
+      watch: {
+        // 在庫数が変化したとき呼び出されるハンドラ
+        stock: function(newStock, oldStock) {
+          if (newStock == 0) {
+            this.message = '売り切れ';
+          }
+        }
+      }
+    })
+    // ウォッチャの使用例
 
     </script>
   </body>
