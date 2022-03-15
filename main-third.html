@@ -8,13 +8,51 @@
   </head>
   <body>
     
+    <!-- 単純なフォーム入力バインディング -->
+    <div id="app22">
+      <input type="text" v-model="year">
+      <p>{{year}}</p>
+    </div>
+    <!-- 単純なフォーム入力バインディング -->
 
-
-
+    <!-- 入力文字をDOMへリアルタイムに反映する -->
+    <div id="app23">
+      <input type="text" v-on:input="yearInputHandler" v-bind:value="year">
+      <p>{{year}}</p>
+    </div>
+    <!-- 入力文字をDOMへリアルタイムに反映する -->
 
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script>
+
+      // 単純なフォーム入力バインディング
+      var app22 = new Vue ({
+        el: '#app22',
+        data: {
+          // 初期値は当年
+          year: (new Date()).getFullYear()
+        }
+      });
+      // 単純なフォーム入力バインディング
+
+      // 入力文字をDOMへリアルタイムに反映する
+      var app23 = new Vue ({
+        el: '#app23',
+        data: {
+          // 初期値は当年
+          year: (new Date()).getFullYear()
+        },
+        methods: {
+          // 「年」のinputイベントハンドラ
+          yearInputHandler: function($event){
+            // 直接データを更新する
+            this.year = $event.target.value;
+          }
+        }
+      });
+      // 入力文字をDOMへリアルタイムに反映する
+
 
 
     </script>
