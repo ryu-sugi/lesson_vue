@@ -40,7 +40,20 @@
     </div>
     <!-- チェックボックスに文字列をバインドする -->
 
-
+    <!-- グループ化したチェックボックスにバインドする(3つの選択肢をグループ化した例) -->
+    <div id="app26">
+      <p>ご注文をお選びください:{{selection}}</p>
+      <label>
+        <input type="checkbox" v-model="answer" value="ケーキ">ケーキ
+      </label>
+      <label>
+        <input type="checkbox" v-model="answer" value="紅茶">紅茶
+      </label>
+      <label>
+        <input type="checkbox" v-model="answer" value="コーヒー">コーヒー
+      </label>
+    </div>
+    <!-- グループ化したチェックボックスにバインドする(3つの選択肢をグループ化した例) -->
 
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
@@ -91,7 +104,21 @@
       })
       // チェックボックスに文字列をバインドする
 
-
+    // グループ化したチェックボックスにバインドする(3つの選択肢をグループ化した例)
+    var app26 = new Vue ({
+      el: '#app26',
+      data: {
+        answer: []
+      },
+      computed: {
+        // チェック内容を連結した文字列を返す算出プロパティ
+        selection: function() {
+          return this.answer.join();
+        }
+      }
+    });
+    // グループ化したチェックボックスにバインドする(3つの選択肢をグループ化した例)
+     
 
     </script>
   </body>
