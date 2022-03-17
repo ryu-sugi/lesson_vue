@@ -83,6 +83,18 @@
     </div>
     <!-- 単一セレクトボックスにバインドする -->
 
+    <!-- 複数セレクトボックスにバインドする -->
+    <div id="app29">
+      <p>分類:{{selectedCategory}}</p>
+      <select v-model="category" multiple>
+        <option value="宿泊費">宿泊費</option>
+        <option value="食費">食費</option>
+        <option value="交通費">交通費</option>
+      </select>
+    </div>
+    <!-- 複数セレクトボックスにバインドする -->
+
+
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script>
@@ -164,6 +176,24 @@
       }
     });
     // 単一セレクトボックスにバインドする
+
+    // 複数セレクトボックスにバインドする
+    var app29 = new Vue ({
+      el: '#app29',
+      data: {
+        category: []
+      },
+      computed: {
+        // 選択された分類を返す算出プロパティ
+        selectedCategory: function() {
+          // 1件以上選択されている場合、選択された値を連結した文字列を返す
+          return this.category.length >=1 ? this.category.join():'';
+        }
+      }
+    });
+    // 複数セレクトボックスにバインドする
+
+
      
 
     </script>
