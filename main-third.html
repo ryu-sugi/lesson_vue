@@ -114,6 +114,13 @@
     </div>
     <!-- カレンダーにバインドする(日付の選択) -->
 
+    <!-- 日付の選択範囲、翌日以降でしか選択できないようにする(応用例1) -->
+    <div id="app32">
+      <p>ご希望到着日:{{arrival_date}}</p>
+      <input type="date" v-model="arrival_date" v-bind:min="min_date">
+    </div>
+    <!-- 日付の選択範囲、翌日以降でしか選択できないようにする(応用例1) -->
+
 
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
@@ -252,6 +259,35 @@
       }
     });
     // カレンダーにバインドする(日付の選択)
+
+    // 日付の選択範囲、翌日以降でしか選択できないようにする(応用例1)
+    var app32 = new Vue({
+      el: '#app32',
+      date: {
+        arrival_date: null,
+        min_date: null
+      },
+      created: function() {
+        // 翌日の日付を初期値とする
+        var dt = new Date();
+        dt.setDate(dt.getDate() + 1);
+        this.arrival_date = this.formatDate(dt);
+        // 翌日の日付を最小値とする
+        this.min_date = this.arrival_date;
+      },
+      methods: {
+        // 日付を YYYY-MM-DD に整形するメソッド
+        formatDate: function(dt) {
+          var y = dt.getFullYear();
+          var m = ('00' + (dt.getMonth()+1)).slice(-2);
+          var d = ('00' +  dt.getDate()).slice(-2);
+          var result = y + '-' + m + '-' + d;
+          return result;
+        }
+      }
+    });
+    // 日付の選択範囲、翌日以降でしか選択できないようにする(応用例1)
+
 
 
      
