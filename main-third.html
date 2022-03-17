@@ -107,6 +107,13 @@
     </div>
     <!-- セレクトボックスの選択肢にバインドする(動的に生成する方法) -->
 
+    <!-- カレンダーにバインドする(日付の選択) -->
+    <div id="app31">
+      <p>ご希望到着日:{{arrival_date}}</p>
+      <input type="date" v-model="arrival_date">
+    </div>
+    <!-- カレンダーにバインドする(日付の選択) -->
+
 
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
@@ -222,6 +229,29 @@
       }
     });
     // セレクトボックスの選択肢にバインドする(動的に生成する方法)
+
+    // カレンダーにバインドする(日付の選択)
+    var app31 = new Vue ({
+      el: '#app31',
+      data: {
+        arrival_date: null
+      },
+      created: function() {
+        // 初期値を設定する
+        this.arrival_date = this.formatDate(new Date());
+      },
+      methods: {
+        // 日付を YYYY-MM-DDに整形するメソッド
+        formatDate: function(dt) {
+          var y = dt.getFullYear();
+          var m = ('00' + (dt.getMonth()+1)).slice(-2);
+          var d = ('00' + dt.getDate()).slice(-2);
+          var result = y + '-' + m + '-' + d;
+          return result;
+        }
+      }
+    });
+    // カレンダーにバインドする(日付の選択)
 
 
      
