@@ -121,6 +121,20 @@
     </div>
     <!-- 日付の選択範囲、翌日以降でしか選択できないようにする(応用例1) -->
 
+    <!-- レンジ入力とカラー選択を同期する (ウォッチャの利用) (応用例2) -->
+    <div id="app33">
+      <fieldset>
+        <legend>あなたの好きな色は？</legend>
+        <input type="color" v-model="color"> {{color}} <br>
+        赤:<input type="range" v-model.number="red" min="0" max="255">
+      {{red}} <br>
+        緑:<input type="range" v-model.number="green" min="0" max="255">
+      {{green}} <br>
+        青:<input type="range" v-model.number="blue" min="0" max="255">
+      {{blue}} <br>
+      </fieldset>
+    </div>
+    <!-- レンジ入力とカラー選択を同期する (ウォッチャの利用) (応用例2) -->
 
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
@@ -287,6 +301,42 @@
       }
     });
     // 日付の選択範囲、翌日以降でしか選択できないようにする(応用例1)
+
+    // レンジ入力とカラー選択を同期する (ウォッチャの利用) (応用例2)
+    var app33 = new Vue ({
+      el: '#app33',
+      data: {
+        color: '#0000000',
+        red: 0,
+        blue: 0,
+        green: 0
+      },
+      computed: {
+        // 赤・緑・青を配列で返す算出プロパティ
+        colorElement: function() {
+          return [this.red, this.green, this.blue];
+        }
+      },
+      watch: {
+        // 赤・緑・青のいずれかの変更を監視する
+        colorElement: function(newRGB, oldRGB) {
+          // 赤・緑・青を2桁の16進数表記に変換数r
+          var r = ('00' + newRGB[0].toString(16).toUpperCase()).slice(-2);
+          var g = ('00' + newRGB[1].toString(16).toUpperCase()).slice(-2);
+          var b = ('00' + newRGB[2].toString(16).toUpperCase()).slice(-2);
+          // #RRGGBB 形式の文字列で更新する
+          this.color = '#' + r + g + b;
+        },
+        // カラーパレットの選択肢を監視する
+        color: function(newColor, oldColor) {
+          this.red = parseInt(newColor.substr(1,2),16);
+          this.green = parseInt(newColor.substr(2,3),16);
+          this.blue = parseInt(newColor.substr(5,2),16);
+
+        }
+      }
+    });
+    // レンジ入力とカラー選択を同期する (ウォッチャの利用) (応用例2)
 
 
 
