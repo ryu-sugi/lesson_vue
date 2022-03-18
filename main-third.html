@@ -137,210 +137,206 @@
     <!-- レンジ入力とカラー選択を同期する (ウォッチャの利用) (応用例2) -->
 
 
-    <script src="https://jp.vuejs.org/js/vue.js"></script>
-    <script>
+  <script src="https://jp.vuejs.org/js/vue.js"></script>
+  <script>
 
-      // 単純なフォーム入力バインディング
-      var app22 = new Vue ({
-        el: '#app22',
-        data: {
-          // 初期値は当年
-          year: (new Date()).getFullYear()
-        }
-      });
-      // 単純なフォーム入力バインディング
-
-      // 入力文字をDOMへリアルタイムに反映する
-      var app23 = new Vue ({
-        el: '#app23',
-        data: {
-          // 初期値は当年
-          year: (new Date()).getFullYear()
-        },
-        methods: {
-          // 「年」のinputイベントハンドラ
-          yearInputHandler: function($event){
-            // 直接データを更新する
-            this.year = $event.target.value;
-          }
-        }
-      });
-      // 入力文字をDOMへリアルタイムに反映する
-
-      // 一方通行のバインディング(改行できる入力欄)
-      var app24 = new Vue ({
-        el: '#app24',
-        data: {
-          message: 'これは一方通行のバインドです。'
-        }
-      });
-      // 一方通行のバインディング(改行できる入力欄)
-
-      // チェックボックスに文字列をバインドする
-      var app25 = new Vue ({
-        el: '#app25',
-        data: {
-          answer: 'はい'
-        }
-      })
-      // チェックボックスに文字列をバインドする
-
-    // グループ化したチェックボックスにバインドする(3つの選択肢をグループ化した例)
-    var app26 = new Vue ({
-      el: '#app26',
+    // 単純なフォーム入力バインディング
+    var app22 = new Vue ({
+      el: '#app22',
       data: {
-        answer: []
-      },
-      computed: {
-        // チェック内容を連結した文字列を返す算出プロパティ
-        selection: function() {
-          return this.answer.join();
-        }
+        // 初期値は当年
+        year: (new Date()).getFullYear()
       }
     });
-    // グループ化したチェックボックスにバインドする(3つの選択肢をグループ化した例)
+    // 単純なフォーム入力バインディング
 
-    // ラジオボタンにバインドする
-    var app27 = new Vue ({
-      el: '#app27',
+    // 入力文字をDOMへリアルタイムに反映する
+    var app23 = new Vue ({
+      el: '#app23',
       data: {
-        answer: '選択してください'
-      }
-    });
-    // ラジオボタンにバインドする
-
-    // 単一セレクトボックスにバインドする
-    var app28 = new Vue ({
-      el: '#app28',
-      data: {
-        answer: ''
-      }
-    });
-    // 単一セレクトボックスにバインドする
-
-    // 複数セレクトボックスにバインドする
-    var app29 = new Vue ({
-      el: '#app29',
-      data: {
-        category: []
-      },
-      computed: {
-        // 選択された分類を返す算出プロパティ
-        selectedCategory: function() {
-          // 1件以上選択されている場合、選択された値を連結した文字列を返す
-          return this.category.length >=1 ? this.category.join():'';
-        }
-      }
-    });
-    // 複数セレクトボックスにバインドする
-
-    // セレクトボックスの選択肢にバインドする(動的に生成する方法)
-    var app30 = new Vue ({
-      el: '#app30',
-      data: {
-        // 回答内容(選択された値)
-        answer: '',
-        // 選択肢に表示する配列データ
-        options: [
-          {code: 'ans1', label: '初めて'},
-          {code: 'ans2', label: '週1回以上'},
-          {code: 'ans3', label: '月2回以上'},
-          {code: 'ans4', label: '半年に1回'}
-        ]
-      }
-    });
-    // セレクトボックスの選択肢にバインドする(動的に生成する方法)
-
-    // カレンダーにバインドする(日付の選択)
-    var app31 = new Vue ({
-      el: '#app31',
-      data: {
-        arrival_date: null
-      },
-      created: function() {
-        // 初期値を設定する
-        this.arrival_date = this.formatDate(new Date());
+        // 初期値は当年
+        year: (new Date()).getFullYear()
       },
       methods: {
-        // 日付を YYYY-MM-DDに整形するメソッド
-        formatDate: function(dt) {
-          var y = dt.getFullYear();
-          var m = ('00' + (dt.getMonth()+1)).slice(-2);
-          var d = ('00' + dt.getDate()).slice(-2);
-          var result = y + '-' + m + '-' + d;
-          return result;
+        // 「年」のinputイベントハンドラ
+        yearInputHandler: function($event){
+          // 直接データを更新する
+          this.year = $event.target.value;
         }
       }
     });
-    // カレンダーにバインドする(日付の選択)
+    // 入力文字をDOMへリアルタイムに反映する
 
-    // 日付の選択範囲、翌日以降でしか選択できないようにする(応用例1)
-    var app32 = new Vue({
-      el: '#app32',
-      date: {
-        arrival_date: null,
-        min_date: null
-      },
-      created: function() {
-        // 翌日の日付を初期値とする
-        var dt = new Date();
-        dt.setDate(dt.getDate() + 1);
-        this.arrival_date = this.formatDate(dt);
-        // 翌日の日付を最小値とする
-        this.min_date = this.arrival_date;
-      },
-      methods: {
-        // 日付を YYYY-MM-DD に整形するメソッド
-        formatDate: function(dt) {
-          var y = dt.getFullYear();
-          var m = ('00' + (dt.getMonth()+1)).slice(-2);
-          var d = ('00' +  dt.getDate()).slice(-2);
-          var result = y + '-' + m + '-' + d;
-          return result;
-        }
-      }
-    });
-    // 日付の選択範囲、翌日以降でしか選択できないようにする(応用例1)
-
-    // レンジ入力とカラー選択を同期する (ウォッチャの利用) (応用例2)
-    var app33 = new Vue ({
-      el: '#app33',
+    // 一方通行のバインディング(改行できる入力欄)
+    var app24 = new Vue ({
+      el: '#app24',
       data: {
-        color: '#0000000',
-        red: 0,
-        blue: 0,
-        green: 0
-      },
-      computed: {
-        // 赤・緑・青を配列で返す算出プロパティ
-        colorElement: function() {
-          return [this.red, this.green, this.blue];
-        }
-      },
-      watch: {
-        // 赤・緑・青のいずれかの変更を監視する
-        colorElement: function(newRGB, oldRGB) {
-          // 赤・緑・青を2桁の16進数表記に変換数r
-          var r = ('00' + newRGB[0].toString(16).toUpperCase()).slice(-2);
-          var g = ('00' + newRGB[1].toString(16).toUpperCase()).slice(-2);
-          var b = ('00' + newRGB[2].toString(16).toUpperCase()).slice(-2);
-          // #RRGGBB 形式の文字列で更新する
-          this.color = '#' + r + g + b;
-        },
-        // カラーパレットの選択肢を監視する
-        color: function(newColor, oldColor) {
-          this.red = parseInt(newColor.substr(1,2),16);
-          this.green = parseInt(newColor.substr(2,3),16);
-          this.blue = parseInt(newColor.substr(5,2),16);
-
-        }
+        message: 'これは一方通行のバインドです。'
       }
     });
-    // レンジ入力とカラー選択を同期する (ウォッチャの利用) (応用例2)
+    // 一方通行のバインディング(改行できる入力欄)
 
+    // チェックボックスに文字列をバインドする
+    var app25 = new Vue ({
+      el: '#app25',
+      data: {
+        answer: 'はい'
+      }
+    })
+    // チェックボックスに文字列をバインドする
 
+  // グループ化したチェックボックスにバインドする(3つの選択肢をグループ化した例)
+  var app26 = new Vue ({
+    el: '#app26',
+    data: {
+      answer: []
+    },
+    computed: {
+      // チェック内容を連結した文字列を返す算出プロパティ
+      selection: function() {
+        return this.answer.join();
+      }
+    }
+  });
+  // グループ化したチェックボックスにバインドする(3つの選択肢をグループ化した例)
 
-     
+  // ラジオボタンにバインドする
+  var app27 = new Vue ({
+    el: '#app27',
+    data: {
+      answer: '選択してください'
+    }
+  });
+  // ラジオボタンにバインドする
+
+  // 単一セレクトボックスにバインドする
+  var app28 = new Vue ({
+    el: '#app28',
+    data: {
+      answer: ''
+    }
+  });
+  // 単一セレクトボックスにバインドする
+
+  // 複数セレクトボックスにバインドする
+  var app29 = new Vue ({
+    el: '#app29',
+    data: {
+      category: []
+    },
+    computed: {
+      // 選択された分類を返す算出プロパティ
+      selectedCategory: function() {
+        // 1件以上選択されている場合、選択された値を連結した文字列を返す
+        return this.category.length >=1 ? this.category.join():'';
+      }
+    }
+  });
+  // 複数セレクトボックスにバインドする
+
+  // セレクトボックスの選択肢にバインドする(動的に生成する方法)
+  var app30 = new Vue ({
+    el: '#app30',
+    data: {
+      // 回答内容(選択された値)
+      answer: '',
+      // 選択肢に表示する配列データ
+      options: [
+        {code: 'ans1', label: '初めて'},
+        {code: 'ans2', label: '週1回以上'},
+        {code: 'ans3', label: '月2回以上'},
+        {code: 'ans4', label: '半年に1回'}
+      ]
+    }
+  });
+  // セレクトボックスの選択肢にバインドする(動的に生成する方法)
+
+  // カレンダーにバインドする(日付の選択)
+  var app31 = new Vue ({
+    el: '#app31',
+    data: {
+      arrival_date: null
+    },
+    created: function() {
+      // 初期値を設定する
+      this.arrival_date = this.formatDate(new Date());
+    },
+    methods: {
+      // 日付を YYYY-MM-DDに整形するメソッド
+      formatDate: function(dt) {
+        var y = dt.getFullYear();
+        var m = ('00' + (dt.getMonth()+1)).slice(-2);
+        var d = ('00' + dt.getDate()).slice(-2);
+        var result = y + '-' + m + '-' + d;
+        return result;
+      }
+    }
+  });
+  // カレンダーにバインドする(日付の選択)
+
+  // 日付の選択範囲、翌日以降でしか選択できないようにする(応用例1)
+  var app32 = new Vue({
+    el: '#app32',
+    date: {
+      arrival_date: null,
+      min_date: null
+    },
+    created: function() {
+      // 翌日の日付を初期値とする
+      var dt = new Date();
+      dt.setDate(dt.getDate() + 1);
+      this.arrival_date = this.formatDate(dt);
+      // 翌日の日付を最小値とする
+      this.min_date = this.arrival_date;
+    },
+    methods: {
+      // 日付を YYYY-MM-DD に整形するメソッド
+      formatDate: function(dt) {
+        var y = dt.getFullYear();
+        var m = ('00' + (dt.getMonth()+1)).slice(-2);
+        var d = ('00' +  dt.getDate()).slice(-2);
+        var result = y + '-' + m + '-' + d;
+        return result;
+      }
+    }
+  });
+  // 日付の選択範囲、翌日以降でしか選択できないようにする(応用例1)
+
+  // レンジ入力とカラー選択を同期する (ウォッチャの利用) (応用例2)
+  var app33 = new Vue ({
+    el: '#app33',
+    data: {
+      color: '#0000000',
+      red: 0,
+      blue: 0,
+      green: 0
+    },
+    computed: {
+      // 赤・緑・青を配列で返す算出プロパティ
+      colorElement: function() {
+        return [this.red, this.green, this.blue];
+      }
+    },
+    watch: {
+      // 赤・緑・青のいずれかの変更を監視する
+      colorElement: function(newRGB, oldRGB) {
+        // 赤・緑・青を2桁の16進数表記に変換数r
+        var r = ('00' + newRGB[0].toString(16).toUpperCase()).slice(-2);
+        var g = ('00' + newRGB[1].toString(16).toUpperCase()).slice(-2);
+        var b = ('00' + newRGB[2].toString(16).toUpperCase()).slice(-2);
+        // #RRGGBB 形式の文字列で更新する
+        this.color = '#' + r + g + b;
+      },
+      // カラーパレットの選択肢を監視する
+      color: function(newColor, oldColor) {
+        this.red = parseInt(newColor.substr(1,2),16);
+        this.green = parseInt(newColor.substr(2,3),16);
+        this.blue = parseInt(newColor.substr(5,2),16);
+
+      }
+    }
+  });
+  // レンジ入力とカラー選択を同期する (ウォッチャの利用) (応用例2)
 
     </script>
   </body>
