@@ -40,6 +40,22 @@
     </transition>
   </div>
   <!-- name属性値でエフェクトを分類する -->
+
+  <!-- 外部ライブラリ「animate.css」を用いたズーム効果の適用(カスタムトランジションクラス使用例) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <div id="app36">
+    <button v-on:click="show =  !show">表示を切り替える</button>
+      <transition name="zoom"
+                  enter-active-class="animated zoomIn"
+                  leave-active-class="animated zoomOut">
+        <p v-if="show">
+          我輩は猫である。名前はまだ無い。 <br>
+          どこで生まれたかとんと見当がつかぬ。 <br>
+          何でも薄暗いジメジメした所でニャーニャー泣いていた事だけは記憶している。 <br>
+        </p>
+      </transition>
+  </div>
+  <!-- 外部ライブラリ「animate.css」を用いたズーム効果の適用(カスタムトランジションクラス使用例) -->
   
   <script src="https://jp.vuejs.org/js/vue.js"></script>
   <script>
@@ -58,6 +74,16 @@
         }
       });
       // name属性値でエフェクトを分類する
+
+  // 外部ライブラリ「animate.css」を用いたズーム効果の適用(カスタムトランジションクラス使用例) 
+  var app36 = new Vue ({
+    el: '#app36',
+    data: {
+      show: true
+    }
+  });
+  // 外部ライブラリ「animate.css」を用いたズーム効果の適用(カスタムトランジションクラス使用例) 
+    
   </script>
       
   <style>
@@ -96,6 +122,10 @@
     transform: translateX(0);
   }
   /* name属性値でエフェクトを分類する */
+
+  /* 外部ライブラリ「animate.css」を用いたズーム効果の適用(カスタムトランジションクラス使用例)  */
+      /* animate.cssが用意してくれているので何も書かなくてOK! */
+  /* 外部ライブラリ「animate.css」を用いたズーム効果の適用(カスタムトランジションクラス使用例)  */
   </style>
 </body>
 </html>
